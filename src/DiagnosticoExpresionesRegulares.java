@@ -1,3 +1,7 @@
+//Chavez Robles Maria Guadalupe
+//Oliva Chavez Miguel Angel
+//Tadeo Perez
+
 import java.util.Scanner;
 
 public class DiagnosticoExpresionesRegulares {
