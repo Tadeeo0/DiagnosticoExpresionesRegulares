@@ -8,20 +8,28 @@ public class DiagnosticoExpresionesRegulares {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String regexIdentificador = "^[A-Za-z_][A-Za-z0-9_]*$";
-        String regexEntero = "^[-+]?\\d+$";
-        String regexBooleano = "^(True|False)$";
+        String regexIdentificador = "^[A-Za-z_][A-Za-z0-9_]*$"; // Identificadores
+        String regexEntero = "^[-+]?\\d+$";                     // Enteros
+        String regexBooleano = "^(True|False)$";                // Boleano
+        String regexDecimal = "^[-+]?(\\d+\\.\\d+|\\d+\\.|\\.\\d+)$"; // Decimales
+        String regexCadena = "^(['\"])(.*?)(\\1)$";                  // Cadenas
+        String regexCaracter = "^(['\"]).(\\1)$";                    //Caracter
+
 
         String opcionStr;
         int opcion = 0;
-     //hola
+
         do {
             System.out.println("\n--- MENÚ DE PRUEBA DE REGEX ---");
             System.out.println("1. Probar Identificador");
             System.out.println("2. Probar Entero");
             System.out.println("3. Probar Booleano");
-            System.out.println("4. Salir");
-            System.out.print("Elige una opción: ");
+            System.out.println("4. Probar Decimal");
+            System.out.println("5. Probar Cadena");
+            System.out.println("6. Probar Caracter");
+            System.out.println("7. Salir");
+            System.out.print("Elige una opción:");
+
 
             opcionStr = sc.nextLine();
             try {
@@ -31,7 +39,7 @@ public class DiagnosticoExpresionesRegulares {
                 continue;
             }
 
-            if (opcion >= 1 && opcion <= 3) {
+            if (opcion >= 1 && opcion <= 6) {
                 System.out.print("Ingresa el texto a validar: ");
                 String entrada = sc.nextLine();
 
@@ -57,12 +65,36 @@ public class DiagnosticoExpresionesRegulares {
                             System.out.println("No es un Booleano válido.");
                         }
                         break;
+                    case 4:
+                        if (entrada.matches(regexDecimal)) {
+                            System.out.println("Es un Decimal valido.");
+                        }else{
+                            System.out.println("No es una Decimal valido.");
+                        }
+
+                    case 5:
+                        if (entrada.matches(regexCadena)) {
+                            System.out.println("Es un Cadena valida.");
+                            break;
+                        }else{
+                            System.out.println("No es una Cadena valida.");
+                            break;
+                        }
+                    case 6:
+                        if (entrada.matches(regexCaracter)) {
+                            System.out.println("Es un Caracter valido.");
+                            break;
+                        }else {
+                            System.out.println("No es una Caracter valido.");
+                            break;
+
+                        }
                 }
-            } else if (opcion != 4) {
+            } else if (opcion != 7) {
                 System.out.println("Opción no válida.");
             }
 
-        } while (opcion != 4);
+        } while (opcion != 7);
 
         System.out.println("Programa finalizado.");
         sc.close();
